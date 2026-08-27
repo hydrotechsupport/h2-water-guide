@@ -29,7 +29,7 @@
   Replace these two placeholders with your real IDs.
 */
 window.H2G_TRACKING = {
-  ga4Id: "G-QE8TERVFFN",
+  googleTagId: "GT-NNXMQ2XQ",
   metaPixelId: "1204101820923797"
 };
 </script>
@@ -38,26 +38,30 @@ window.H2G_TRACKING = {
 (function () {
   var cfg = window.H2G_TRACKING || {};
 
-  // ---------- Google Analytics 4 ----------
-  if (cfg.ga4Id && /^G-[A-Z0-9]+$/i.test(cfg.ga4Id) && cfg.ga4Id.indexOf("XXXX") === -1) {
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = window.gtag || function(){ dataLayer.push(arguments); };
+  // ---------- Google tag / GA4 ----------
+if (
+  cfg.googleTagId &&
+  /^GT-[A-Z0-9]+$/i.test(cfg.googleTagId) &&
+  cfg.googleTagId.indexOf("XXXX") === -1
+) {
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function(){ dataLayer.push(arguments); };
 
-    // Cross-domain linker: GA4 Admin should also include both domains.
-    gtag('set', 'linker', {
-      'domains': ['h2waterguide.com', 'hydrotechnz.com']
-    });
+  gtag('set', 'linker', {
+    domains: ['h2waterguide.com', 'hydrotechnz.com']
+  });
 
-    gtag('js', new Date());
-    gtag('config', cfg.ga4Id, {
-      'send_page_view': true
-    });
+  gtag('js', new Date());
+  gtag('config', cfg.googleTagId);
 
-    var ga = document.createElement('script');
-    ga.async = true;
-    ga.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(cfg.ga4Id);
-    document.head.appendChild(ga);
-  }
+  var ga = document.createElement('script');
+  ga.async = true;
+  ga.src =
+    'https://www.googletagmanager.com/gtag/js?id=' +
+    encodeURIComponent(cfg.googleTagId);
+
+  document.head.appendChild(ga);
+}
 
   // ---------- Meta Pixel ----------
   if (cfg.metaPixelId && /^\d+$/.test(String(cfg.metaPixelId))) {
