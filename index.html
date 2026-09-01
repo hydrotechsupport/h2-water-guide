@@ -83,6 +83,17 @@ if (
 })();
 </script>
 
+<!-- ---------- Microsoft Clarity ---------- -->
+<script type="text/javascript">
+(function(c,l,a,r,i,t,y){
+  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "tbjdt6zbvz");
+
+clarity("set", "site", "h2waterguide");
+</script>
+
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 </head>
 
@@ -1051,6 +1062,11 @@ if (
             destination: 'hydrotechnz_offer'
           });
         }
+
+        if (typeof window.clarity === 'function') {
+          clarity('event', 'offer_click');
+          clarity('set', 'cta_location', locationName);
+        }
       });
     } catch(e) {}
   });
@@ -1063,6 +1079,10 @@ if (
           link_text: (link.textContent || '').trim(),
           link_url: link.href
         });
+      }
+
+      if (typeof window.clarity === 'function') {
+        clarity('event', 'competitor_click');
       }
     });
   });
@@ -1091,6 +1111,10 @@ if (
           fbq('trackCustom', 'ListicleEngaged', {
             scroll_depth: 50
           });
+        }
+
+        if (level === 50 && typeof window.clarity === 'function') {
+          clarity('event', 'listicle_engaged_50');
         }
       }
     });
